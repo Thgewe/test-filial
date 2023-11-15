@@ -5,6 +5,7 @@
 /* colors */
 #root-app[data-theme="default"] {
     --color-primary: #072659;
+    --color-bg: #FFFFFF;
 
     --font-color-primary: #072659;
     --font-color-secondary: #FFFFFF;
