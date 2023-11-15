@@ -1,0 +1,12 @@
+:root {
+    --font-main: Arial, san-serif;
+}
+
+/* colors */
+#root-app[data-theme="default"] {
+    --color-primary: #072659;
+
+    --font-color-primary: #072659;
+    --font-color-secondary: #FFFFFF;
+    --font-color-inactive: #657A9D;
+}
