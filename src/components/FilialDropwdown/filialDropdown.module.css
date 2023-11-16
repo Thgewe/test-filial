@@ -1,0 +1,73 @@
+.dropdown {
+    color: var(--font-color-primary);
+    position: relative;
+}
+.dropdown[data-drop=true] .head::after {
+    transform: rotateX(180deg);
+}
+.dropdown[data-drop=false] .tail {
+    display: none;
+}
+.head {
+    padding: .375rem .625rem;
+    width: 100%;
+    color: inherit;
+    border: .0625rem solid var(--color-primary);
+    border-radius: .3125rem;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-bg);
+}
+.head::placeholder {
+    color: var(--font-color-inactive);
+}
+.head:hover {
+    cursor: pointer;
+}
+.head::after {
+    content: "v";
+    color: var(--font-color-secondary);
+    background-color: var(--color-primary);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: .625rem;
+}
+.tail {
+    z-index: 100;
+    border: .0625rem solid var(--color-primary);
+    border-radius: .3125rem;
+    overflow: hidden;
+    position: absolute;
+    top: 110%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.tail button {
+    text-align: left;
+    padding: .375rem .625rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color .3s, color .3s;
+    background-color: transparent;
+    color: var(--font-color-primary);
+    font-size: 1rem;
+}
+.tail button:hover, .tail button:focus {
+    background-color: var(--color-primary);
+    color: var(--font-color-secondary);
+    outline: none;
+}
+.tail button[data-active=true] {
+    color: var(--font-color-inactive);
+    pointer-events: none;
+    user-focus: none;
+}
