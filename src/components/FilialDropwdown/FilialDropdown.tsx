@@ -37,7 +37,9 @@ const FilialDropdown = ({filialList}: IFilialDropdownProps) => {
 
     return (
         <div className={cl.dropdown} data-drop={drop}>
+            <label className={cl.label}>Филиалы</label>
             <button
+                id={"dropdown-filial"}
                 className={cl.head}
                 onClick={(e) => {
                     e.stopPropagation();
