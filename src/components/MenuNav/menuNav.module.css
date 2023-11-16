@@ -1,0 +1,20 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: .625rem;
+}
+.menu button {
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    color: var(--font-color-primary);
+    font-size: 1rem;
+    padding: .3125rem .625rem;
+    cursor: pointer;
+    transition: box-shadow .3s;
+}
+.menu button[data-active=true],
+.menu button:hover,
+.menu button:focus {
+    box-shadow: 0 .25rem .25rem 0 #00000040;
+}
