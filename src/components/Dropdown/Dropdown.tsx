@@ -1,21 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import cl from "./filialDropdown.module.css";
-import {IFilial} from "../../models/filial";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {setActiveFilial} from "../../store/slices/activeFilialSlice";
+import cl from "./dropdown.module.css";
+import {IOption} from "../../models/option";
 
-interface IFilialDropdownProps {
-    filialList: IFilial[];
+interface IDropdownProps {
+    options: IOption[];
+    activeOption: IOption;
+    onChangeHandler: (option: IOption) => void;
 }
 
-const FilialDropdown = ({filialList}: IFilialDropdownProps) => {
+const Dropdown = ({options, onChangeHandler, activeOption}: IDropdownProps) => {
 
     const [drop, setDrop] = useState<boolean>(false);
-    const dispatch = useAppDispatch();
-    const activeFilial = useAppSelector(state => state.filialReducer);
 
-    const listItemClickHandler = (newValue: IFilial) => {
-        dispatch(setActiveFilial(newValue));
+    const optionClickHandler = (option: IOption) => {
+        onChangeHandler(option);
         setDrop(false);
     }
 
@@ -45,25 +43,25 @@ const FilialDropdown = ({filialList}: IFilialDropdownProps) => {
                     e.stopPropagation();
                     setDrop(prevState => !prevState);
                 }}
-            >{activeFilial.name || "Выберите"}</button>
+            >{activeOption.name || "Выберите"}</button>
             <div
                 className={cl.tail}
             >
-                {filialList.map((filial) =>
+                {options.map((option) =>
                     <button
-                        key={filial.id}
-                        data-value={filial.id}
-                        data-active={filial.id === activeFilial.id}
+                        key={option.id}
+                        data-value={option.id}
+                        data-active={option.id === activeOption.id}
                         tabIndex={drop
-                            ? filial.name === activeFilial.name ? -1 : 0
+                            ? option.id === activeOption.id ? -1 : 0
                             : -1}
-                        onClick={() => listItemClickHandler(filial)}
+                        onClick={() => optionClickHandler(option)}
                     >
-                            {filial.name}
+                        {option.name}
                     </button>)}
             </div>
         </div>
     );
 };
 
-export default FilialDropdown;
+export default Dropdown;
