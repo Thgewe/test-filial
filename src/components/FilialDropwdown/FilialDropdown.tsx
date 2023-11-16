@@ -15,10 +15,7 @@ const FilialDropdown = ({filialList}: IFilialDropdownProps) => {
     const activeFilial = useAppSelector(state => state.filialReducer);
 
     const listItemClickHandler = (newValue: IFilial) => {
-        dispatch(setActiveFilial({
-            id: newValue.id,
-            name: newValue.name,
-        }))
+        dispatch(setActiveFilial(newValue));
         setDrop(false);
     }
 
