@@ -18,7 +18,7 @@
     padding: .375rem 2.375rem .375rem .625rem;
     width: 100%;
     color: inherit;
-    border: .0625rem solid var(--color-primary);
+    border: .0625rem solid var(--font-color-inactive);
     border-radius: .3125rem;
     font-size: 1rem;
     font-family: var(--font-main);
