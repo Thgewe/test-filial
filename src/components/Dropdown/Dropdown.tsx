@@ -6,9 +6,10 @@ interface IDropdownProps {
     options: IOption[];
     activeOption: IOption;
     onChangeHandler: (option: IOption) => void;
+    label?: string;
 }
 
-const Dropdown = ({options, onChangeHandler, activeOption}: IDropdownProps) => {
+const Dropdown = ({options, onChangeHandler, activeOption, label}: IDropdownProps) => {
 
     const [drop, setDrop] = useState<boolean>(false);
 
@@ -35,7 +36,7 @@ const Dropdown = ({options, onChangeHandler, activeOption}: IDropdownProps) => {
 
     return (
         <div className={cl.dropdown} data-drop={drop}>
-            <label className={cl.label}>Филиалы</label>
+            {label && <label className={cl.label}>{label}</label>}
             <button
                 id={"dropdown-filial"}
                 className={cl.head}
