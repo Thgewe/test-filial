@@ -1,0 +1,15 @@
+.input {
+    border: .0625rem solid var(--font-color-inactive);
+    border-radius: .3125rem;
+    color: var(--font-color-primary);
+    background-color: var(--color-bg);
+    padding: .3125rem .625rem;
+    font-size: 1.125rem;
+    width: 100%;
+}
+.input::placeholder {
+    color: var(--font-color-inactive);
+}
+.input:placeholder-shown {
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,19 @@
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 1.875rem;
+}
+.filter input {
+    width: 17.57%;
+    min-width: 9rem;
+}
+.filter > div {
+    width: 15.28%;
+    min-width: 7.875rem;
+    color: var(--font-color-inactive);
+}
+.filter div > button {
+    font-size: 1.125rem;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+}

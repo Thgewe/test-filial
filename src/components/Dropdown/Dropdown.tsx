@@ -7,9 +7,16 @@ interface IDropdownProps {
     activeOption: IOption;
     onChangeHandler: (option: IOption) => void;
     label?: string;
+    order?: number;
 }
 
-const Dropdown = ({options, onChangeHandler, activeOption, label}: IDropdownProps) => {
+const Dropdown = ({
+                      options,
+                      onChangeHandler,
+                      activeOption,
+                      label,
+                      order
+}: IDropdownProps) => {
 
     const [drop, setDrop] = useState<boolean>(false);
 
@@ -35,7 +42,11 @@ const Dropdown = ({options, onChangeHandler, activeOption, label}: IDropdownProp
     }, [drop])
 
     return (
-        <div className={cl.dropdown} data-drop={drop}>
+        <div
+            className={cl.dropdown}
+            data-drop={drop}
+            style={order !== undefined ? {order} : undefined}
+        >
             {label && <label className={cl.label}>{label}</label>}
             <button
                 id={"dropdown-filial"}
