@@ -7,6 +7,7 @@ interface ICustomInputProps {
     value: string;
     changeHandler: (name: string, value: string) => void;
     order?: number;
+    readonly?: boolean;
 }
 
 const CustomInput = ({
@@ -15,11 +16,14 @@ const CustomInput = ({
                          value,
                          changeHandler,
                          order,
+                         readonly,
 }: ICustomInputProps) => {
     return (
         <input
+            readOnly={readonly}
+            tabIndex={readonly ? -1 : 0}
             style={order !== undefined ? {order} : undefined}
-            className={cl.input}
+            className={cl.input + (readonly ? " " + cl.read : "")}
             placeholder={placeholder}
             value={value}
             onChange={(e) => changeHandler(name, e.target.value)}

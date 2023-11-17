@@ -3,22 +3,14 @@ import cl from "./filter.module.css";
 import CustomInput from "../CustomInput/CustomInput";
 import Dropdown from "../Dropdown/Dropdown";
 import {IOption} from "../../models/option";
-import {IFilter} from "../../models/filter";
+import {IDropdown, IFilter, IInput} from "../../models/filter";
 
 // поля "name", в inputs и dropdowns,
 // должны соответствовать полям в filter
 interface IFilterProps {
     filter: IFilter;
-    dropdowns?: {
-        name: string;
-        order?: number;
-        options: IOption[];
-    }[];
-    inputs?: {
-        name: string,
-        order?: number;
-        placeholder: string,
-    }[];
+    dropdowns?: IDropdown[];
+    inputs?: IInput[];
     dropdownChangeHandler: (filterName: string, option: IOption) => void;
     inputChangeHandler: (filterName: string, value: string) => void;
 }
@@ -35,6 +27,7 @@ const Filter = ({
             {inputs && inputs.map((input) => <CustomInput
                 key={input.name}
                 order={input.order}
+                readonly={input.readonly}
                 placeholder={input.placeholder}
                 name={input.name}
                 value={filter[input.name] as string}
