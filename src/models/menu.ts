@@ -31,3 +31,11 @@ export interface IMenuItemValue {
     flexGrow: string;
     value: string | string[];
 }
+export interface IMenusResponse {
+    data: IMenu[],
+    max_pages: number
+}
+export interface IMenusRequestBody {
+    filialId: number,
+    params?: IMenuParams
+}

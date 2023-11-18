@@ -1,0 +1,18 @@
+.pagination {
+    color: var(--font-color-primary);
+    display: flex;
+    align-items: center;
+    gap: .625rem;
+}
+.pagination > button {
+    color: inherit;
+}
+.pagination > button:first-child,
+.pagination > button:last-child {
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 50%;
+}
+.pagination > button:last-child {
+    transform: rotateY(180deg);
+}

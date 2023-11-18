@@ -1,1 +1,4 @@
-.App {}
+.App {
+    min-height: 100vh;
+    height: 1px;
+}

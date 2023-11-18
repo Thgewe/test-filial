@@ -12,6 +12,7 @@
     justify-content: center;
 }
 
-.button:hover {
+.button:hover,
+.button.active {
     box-shadow: 0 .25rem .25rem 0 #00000040;
 }
