@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import cl from "./menuPage.module.css";
 import Filter from "../../components/Filter/Filter";
 import {IOption} from "../../models/option";
@@ -13,15 +13,14 @@ import Pagination from "../../components/Pagination/Pagination";
 const debouncedDelayChange = changeDebounce<{
     filialId: number,
     menu: IMenuFilter,
-    page: number,
-    trigger: (filter: IMenusRequestBody, preferCachedValue: boolean) => void
+    changeHandler: (filter: IMenusRequestBody, preferCachedValue: boolean) => void
 }>((obj) => {
     if (obj) {
-        obj.trigger({
+        obj.changeHandler({
             filialId: obj.filialId,
             params: {
                 limit: 3,
-                page: obj.page,
+                page: 1,
                 active: obj.menu.isActive.id === 1 ? "active" : "no_active",
                 name: obj.menu.menu,
                 filial: obj.menu.filial,
@@ -41,7 +40,7 @@ const MenuPage = () => {
         export: "",
         isActive: options[1],
     });
-    const [page, setPage] = useState<number>(1);
+    const page = useRef<number>(1);
     const {id} = useAppSelector(state => state.filialReducer);
 
     const changeHandler = (name: string, value: IOption | string) => {
@@ -50,30 +49,33 @@ const MenuPage = () => {
             [name]: value,
         })
     }
-
-    const [trigger, result] = filialAPI.endpoints.getMenuByFilialId.useLazyQuery();
-
-    useEffect(() => {
-        debouncedDelayChange({
-            filialId: id,
-            page,
-            menu: filter,
-            trigger,
-        });
-    }, [filter, id])
-    useEffect(() => {
+    const pageChangeHandler = (newPage: number) => {
+        page.current = newPage;
         trigger({
             filialId: id,
             params: {
                 limit: 3,
-                page: page,
+                page: page.current,
                 active: filter.isActive.id === 1 ? "active" : "no_active",
                 name: filter.menu,
                 filial: filter.filial,
                 tt: filter.store
             }
         }, true)
-    }, [page])
+    }
+
+    const [trigger, result] = filialAPI.endpoints.getMenuByFilialId.useLazyQuery();
+
+    useEffect(() => {
+        debouncedDelayChange({
+            filialId: id,
+            menu: filter,
+            changeHandler: (filter, preferCachedValue) => {
+                page.current = 1;
+                trigger(filter, preferCachedValue);
+            },
+        });
+    }, [filter, id])
 
     if (result.isLoading) return <div>Loading...</div>
     if (result.error) return <div>Some error occurred</div>
@@ -105,8 +107,8 @@ const MenuPage = () => {
                     : <div className={cl.pagination}>
                         <Pagination
                             totalPages={result.data.max_pages}
-                            currentPage={page}
-                            changePageHandler={(newPage) => setPage(newPage)}
+                            currentPage={page.current}
+                            changePageHandler={(newPage) => pageChangeHandler(newPage)}
                         />
                     </div>
             }
