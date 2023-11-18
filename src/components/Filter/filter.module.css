@@ -1,18 +1,24 @@
 .filter {
     display: flex;
+}
+.container {
+    width: var(--filter-width);
+    display: flex;
     align-items: center;
-    gap: 1.875rem;
+    gap: var(--filter-gap);
 }
-.filter input {
-    width: 17.57%;
-    min-width: 9rem;
+.container > input {
+    flex-grow: var(--filter-input-flex-grow);
+    flex-basis: var(--filter-input-flex-basis);
+    min-width: var(--filter-input-flex-basis);
 }
-.filter > div {
-    width: 15.28%;
-    min-width: 7.875rem;
+.container > div {
+    min-width: var(--filter-dropdown-flex-basis);
+    flex-grow: var(--filter-dropdown-flex-grow);
+    flex-basis: var(--filter-dropdown-flex-basis);
     color: var(--font-color-inactive);
 }
-.filter div > button {
+.container div > button {
     font-size: 1.125rem;
     padding-top: .3125rem;
     padding-bottom: .3125rem;

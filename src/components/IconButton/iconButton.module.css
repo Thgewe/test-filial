@@ -1,0 +1,13 @@
+.button {
+    width: 1.875rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: .5rem;
+    transition: box-shadow .3s;
+}
+.button:hover {
+    box-shadow: 0 .25rem .25rem 0 #00000040;
+}

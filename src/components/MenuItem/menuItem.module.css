@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+.container + .container {
+    margin-top: 1.875rem;
+}
+.values {
+    width: var(--filter-width);
+    display: flex;
+    gap: var(--filter-gap);
+}
+.item {
+    color: var(--font-color-primary);
+    font-size: 1.125rem;
+    cursor: default;
+    word-break: break-word;
+
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*display: -webkit-box;*/
+    /*display: -moz-box;*/
+    /*-webkit-box-orient: vertical;*/
+    /*-moz-box-orient: vertical;*/
+    /*-webkit-line-clamp: 3; !* number of lines to show *!*/
+    /*line-height: 1.29rem;*/
+    /*max-height: calc(1.29rem * 3);*/
+}
+.item span {
+    display: block;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+}
+.item span + span {
+    margin-top: .5rem;
+}
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: .3125rem;
+}
