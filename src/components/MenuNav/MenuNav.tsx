@@ -15,7 +15,8 @@ const MenuNav = () => {
 
     return (
         <div className={cl.menu}>
-            {menuRoutes.map((route) =>
+            {/*slice(1) чтобы убрать возможность выбрать dummyPage */}
+            {menuRoutes.slice(1).map((route) =>
                 <button
                     key={route.id}
                     data-active={page.elementId === route.id}

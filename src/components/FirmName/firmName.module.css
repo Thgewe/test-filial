@@ -1,6 +1,7 @@
 .firm {
     padding: .625rem 1rem .3125rem .625rem;
     width: 16rem;
+    height: min-content;
     box-shadow: 0 .25rem .25rem 0 #00000040;
     background-color: var(--color-bg);
     color: var(--font-color-primary);

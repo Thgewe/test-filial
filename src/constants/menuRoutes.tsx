@@ -1,8 +1,15 @@
 import {IMenuRoute} from "../models/menuRoute";
 import BlankPage from "../pages/BlankPage/BlankPage";
 import MenuPage from "../pages/MenuPage/MenuPage";
+import DummyPage from "../pages/DummyPage/DummyPage";
 
 export const menuRoutes: IMenuRoute[] = [
+    {
+        id: -1,
+        name: "Ничего",
+        path: "dummy",
+        element: <DummyPage />,
+    },
     {
         id: 0,
         name: "Компоненты",

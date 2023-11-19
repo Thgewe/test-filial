@@ -10,6 +10,7 @@
 }
 .menus {
     padding: 1.875rem .625rem 1rem .25rem;
+    color: var(--font-color-primary);
 }
 .border {
     display: block;
@@ -21,4 +22,13 @@
     justify-self: flex-end;
     display: flex;
     margin-top: auto;
+}
+.blank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    height: 100%;
+    grid-area: c;
+    color: var(--font-color-primary);
 }

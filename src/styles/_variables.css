@@ -1,6 +1,8 @@
 :root {
     --font-main: Arial, san-serif;
 
+    --desktop-max-width: 1440px;
+
     --filter-width: 77.45%;
     --filter-gap: 1.875rem;
     --filter-input-flex-basis: 9rem;

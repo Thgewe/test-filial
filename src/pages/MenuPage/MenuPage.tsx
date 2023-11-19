@@ -67,22 +67,25 @@ const MenuPage = () => {
     const [trigger, result] = filialAPI.endpoints.getMenuByFilialId.useLazyQuery();
 
     useEffect(() => {
-        debouncedDelayChange({
-            filialId: id,
-            menu: filter,
-            changeHandler: (filter, preferCachedValue) => {
-                page.current = 1;
-                trigger(filter, preferCachedValue);
-            },
-        });
+        if (id > 0) {
+            debouncedDelayChange({
+                filialId: id,
+                menu: filter,
+                changeHandler: (filter, preferCachedValue) => {
+                    trigger(filter, preferCachedValue);
+                    page.current = 1;
+                },
+            });
+        }
     }, [filter, id])
 
-    if (result.isLoading) return <div>Loading...</div>
-    if (result.error) return <div>Some error occurred</div>
-    if (typeof result.data === "undefined") return <div>Something went wrong</div>
+    if (id < 0) return <div className={cl.blank}>Выберите филиал</div>
+    if (result.isLoading) return <div className={cl.blank}>Loading...</div>
+    if (result.error) return <div className={cl.blank}>Some error occurred</div>
+    if (typeof result.data === "undefined") return <div className={cl.blank}>Something went wrong</div>
 
     return (
-        <div className={cl.page}>
+        <section className={cl.page}>
             <div className={cl.filter}>
                 <Filter
                     filter={filter}
@@ -95,7 +98,7 @@ const MenuPage = () => {
             <span className={cl.border}></span>
             <div className={cl.menus}>
                 {result.data === null
-                    ? <div>Ничего не найдено</div>
+                    ? <div className={cl.blank}>Ничего не найдено</div>
                     : result.isFetching
                         ? <div>Loading...</div>
                         : <MenuItems items={result.data.data} />
@@ -112,7 +115,7 @@ const MenuPage = () => {
                         />
                     </div>
             }
-        </div>
+        </section>
     );
 };
 
