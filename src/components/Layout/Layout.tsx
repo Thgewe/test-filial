@@ -6,6 +6,8 @@ import Dropdown from "../Dropdown/Dropdown";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {filialAPI} from "../../services/filialService";
 import {setActiveFilial} from "../../store/slices/activeFilialSlice";
+import Error from "../Error/Error";
+import {IErrorApi} from "../../models/apiError";
 
 const Layout = ({children}: React.PropsWithChildren) => {
 
@@ -15,7 +17,9 @@ const Layout = ({children}: React.PropsWithChildren) => {
     const dispatch = useAppDispatch();
 
     if (isLoading) return <div>Загрузка...</div>
-    if (error) return <div>Произошла какая-то ошибка</div>
+    if (error && "data" in error) return <Error
+        error={error as IErrorApi}
+    />
     if (!data) return <div>Что-то пошло не так</div>
 
     return (

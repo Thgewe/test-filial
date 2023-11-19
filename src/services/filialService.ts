@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {IFilial} from "../models/filial";
-import {IMenu, IMenuParams, IMenusRequestBody, IMenusResponse} from "../models/menu";
+import {IMenusRequestBody, IMenusResponse} from "../models/menu";
 
 export const filialAPI = createApi({
     reducerPath: "filialAPI",

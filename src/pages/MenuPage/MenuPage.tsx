@@ -9,6 +9,7 @@ import {inputs, dropdowns, options} from "../../constants/menuFilterFields";
 import {useAppSelector} from "../../hooks/redux";
 import MenuItems from "../../components/MenuItems/MenuItems";
 import Pagination from "../../components/Pagination/Pagination";
+import Error from "../../components/Error/Error";
 
 const debouncedDelayChange = changeDebounce<{
     filialId: number,
@@ -30,7 +31,6 @@ const debouncedDelayChange = changeDebounce<{
     }
 }, 300);
 
-// TODO: - Error handling
 
 const MenuPage = () => {
     const [filter, setFilter] = useState<IMenuFilter>({
@@ -80,9 +80,9 @@ const MenuPage = () => {
     }, [filter, id])
 
     if (id < 0) return <div className={cl.blank}>Выберите филиал</div>
-    if (result.isLoading) return <div className={cl.blank}>Loading...</div>
-    if (result.error) return <div className={cl.blank}>Some error occurred</div>
-    if (typeof result.data === "undefined") return <div className={cl.blank}>Something went wrong</div>
+    if (result.isLoading) return <div className={cl.blank}>Загрузка...</div>
+    if (result.error) return <Error error={result.error} />
+    if (typeof result.data === "undefined") return <div className={cl.blank}>Что то пошло не так</div>
 
     return (
         <section className={cl.page}>
